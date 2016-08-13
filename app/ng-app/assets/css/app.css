@@ -1,0 +1,22 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+.app-container{    
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.side-bar{
+    background-color: silver;
+}
+.container-row {
+    height: 100%;
+}
+.full-height {
+    height: 100%;
+}
