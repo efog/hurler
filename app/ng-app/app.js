@@ -21,6 +21,17 @@ var appConfigurator = ($httpProvider, $provide) => {
 };
 app.config(['$httpProvider', '$provide', appConfigurator]);
 
+app.config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider.state('home', {
+        'url': '/home',
+        'templateUrl': 'ng-app/views/partials/home.html'
+    }).state('about', {
+    });
+
+});
+
 var run = ($http, $location, $rootScope, $injector) => {
 
 };

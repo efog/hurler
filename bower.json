@@ -40,7 +40,6 @@
     },
     "jquery": {
       "main": [
-        "dist/jquery.js"
       ]
     },
     "bootstrap": {

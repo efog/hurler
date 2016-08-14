@@ -15,10 +15,11 @@ var inject = () => {
     var bowerOptions = {
         'bowerJson': require('./bower.json'),
         'directory': './app/bower_components',
-        'ignorePath': 'app/'
+        'ignorePath': '/app/'
     };
     var injectOptions = {
-        'ignorePath': 'app/'
+        'ignorePath': '/app/',
+        'relative': true
     };
 
     var injectSrc = gulp.src([
