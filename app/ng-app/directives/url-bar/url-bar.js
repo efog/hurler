@@ -27,7 +27,7 @@ function urlBar($http) {
     }
 
     // Usage:
-    //
+    //  <url-bar></url-bar>
     // Creates:
     //
     var directive = {
