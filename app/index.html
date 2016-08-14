@@ -30,8 +30,10 @@
 <body ng-app="app">
     <div class="container app-container">
         <div class="row container-row">
-            <div class="full-height side-bar col-sm-4 col-md-3 col-lg-2"></div>
-            <div ui-view class="full-height col-sm-8 col-md-9 col-lg-10"></div>
+            <div class="full-height side-bar col-sm-4 col-md-3 col-lg-3">
+                <url-bar></url-bar>
+            </div>
+            <div ui-view class="full-height col-sm-8 col-md-9 col-lg-9"></div>
         </div>
     </div>
     <!--//footer-->
@@ -47,6 +49,7 @@
     <!-- endbower -->
     <!-- inject:js -->
     <script src="ng-app/app.js"></script>
+    <script src="ng-app/services/url-service.js"></script>
     <script src="ng-app/directives/url-bar/url-bar.js"></script>
     <!-- endinject -->
 </body>

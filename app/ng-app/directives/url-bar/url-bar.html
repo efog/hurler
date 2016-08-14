@@ -1,0 +1,21 @@
+<div id="url-bar">
+    <div class="row">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="vm.currentNew.url" placeholder="Enter Url...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="vm.add()"><i class="fa fa-plus"></i></button>
+            </span>
+        </div>
+        <!-- /input-group -->
+    </div>
+    <div class="row">
+        <div class="row" ng-repeat="url in vm.urls">
+            <div class="url-item">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <span class="uppercase">{{ url.url }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

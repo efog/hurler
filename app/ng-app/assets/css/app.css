@@ -12,11 +12,14 @@ html {
     margin-right: 0;
 }
 .side-bar{
-    background-color: silver;
+    background-color: #335669;
 }
 .container-row {
     height: 100%;
 }
 .full-height {
     height: 100%;
+}
+#url-bar{
+    color: white;
 }
