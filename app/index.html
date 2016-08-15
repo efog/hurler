@@ -14,42 +14,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hurler, URL Testing and tools">
     <meta name="author" content="Étienne Brouillard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript">
     window.$ = window.jQuery = require('jquery');
+    window.Hammer = require('hammerjs');
     </script>
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
     <!-- endbower -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="ng-app/assets/css/app.css">
+    <link rel="stylesheet" href="ng-app/assets/css/zapp.css">
     <!-- endinject -->
 </head>
 
 <body ng-app="app">
-    <div class="container app-container">
+    <div class="app-container">
         <div class="row container-row">
-            <div class="full-height side-bar col-sm-4 col-md-3 col-lg-3">
+            <div class="full-height side-bar col s4 m3 l3">
                 <url-bar></url-bar>
             </div>
-            <div ui-view class="full-height col-sm-8 col-md-9 col-lg-9"></div>
+            <div ui-view class="full-height col s8 m9 l9"></div>
         </div>
     </div>
     <!--//footer-->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui/build/angular-ui.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
     <script src="ng-app/app.js"></script>
     <script src="ng-app/services/url-service.js"></script>
+    <script src="ng-app/directives/url-bar-item/url-bar-item.js"></script>
     <script src="ng-app/directives/url-bar/url-bar.js"></script>
     <!-- endinject -->
 </body>

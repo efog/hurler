@@ -10,16 +10,36 @@ var Url = function () {
             }
         }
     });
+
+    return this;
 };
 
 /**
  * Controller Constructor
  * @constructor
+ *
+ * @param {any} $mdToast toast service
+ * @param {any} $rootScope root scope provider
+ * @param {any} UrlService url api service
  */
-function UrlBarController() {
+function UrlBarController($mdToast, $rootScope, UrlService) {
+    this.service = UrlService;
     this._urls = [];
     this._newUrl = new Url();
     Object.defineProperties(this, {
+        'handleError': {
+            'value': (error) => {
+                if (error) {
+                    var pinTo = 'top right';
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent(`Error while storing object: ${error.target.error}`)
+                            .position(pinTo)
+                            .hideDelay(1000)
+                    );
+                }
+            }
+        },
         'urls': {
             'get': () => {
                 return this._urls;
@@ -27,9 +47,15 @@ function UrlBarController() {
         },
         'add': {
             'value': (urlObject) => {
-                this._urls.push(this._newUrl);
-                console.log('added %s', this._newUrl.url);
-                this._newUrl = new Url();
+                this.service.add(this._newUrl, (err) => {
+                    this.handleError(err);
+                    if (err === null) {
+                        this._urls.push(this._newUrl);
+                        console.log('added %s', this._newUrl.url);
+                        this._newUrl = new Url();
+                        $rootScope.$apply();
+                    }
+                });
             }
         },
         'currentNew': {
@@ -38,6 +64,25 @@ function UrlBarController() {
             }
         }
     });
+
+    var fetchCallback = (err, result) => {
+        this.handleError(err);
+        result.forEach(function (element) {
+            var url = new Url();
+            url.url = element._url;
+            this._urls.push(url);
+        }, this);
+        $rootScope.$apply();
+    };
+    var fetchAll = () => {
+        if (this.service.database) {
+            this.service.all(fetchCallback);
+        }
+        else {
+            setTimeout(fetchAll, 100);
+        }
+    };
+    fetchAll();
 
     return this;
 }

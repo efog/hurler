@@ -25,6 +25,7 @@
   "dependencies": {
     "electron-prebuilt": "^1.3.3",
     "express": "^4.14.0",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.1.0"
   }
 }

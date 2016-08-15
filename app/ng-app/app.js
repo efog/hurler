@@ -1,9 +1,9 @@
 var app = angular.module('app', [
     // Angular modules
     'ngAnimate',
+    'ngMaterial',
     'ngMessages',
     'ngSanitize',
-    'ngTouch',
     // Custom modules
     // 3rd Party Modules
     'ui.router'

@@ -1,0 +1,55 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.ellipsis{  
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.app-container{    
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.side-bar{
+    background-color: #335669;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.container-row {
+    height: 100%;
+    margin-bottom: 0;
+}
+.full-height {
+    height: 100%;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.sidebar-icon {
+    color: white;
+}
+.btn.ng-show,
+.btn.ng-hide{
+    -webkit-transition: all 50ms ease-in-out 0;
+    -moz-transition: all 50ms ease-in-out 0;
+    transition: all 50ms ease-in-out 0;
+}
+.btn.ng-show{
+    opacity: 1;
+}
+.btn.ng-hide{
+    opacity: 0;
+}
+#url-bar{
+    color: white;
+}

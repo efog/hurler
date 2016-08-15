@@ -20,21 +20,21 @@ function UrlService($http) {
         this._idbSupport = true;
     }
     if (this._idbSupport) {
-        var openRequest = indexedDB.open(DB_NAME, 1);
+        var openRequest = indexedDB.open(DB_NAME, 3);
 
         openRequest.onupgradeneeded = (event) => {
             var thisDB = event.target.result;
             if (!thisDB.objectStoreNames.contains(URLS_OBJECT_STORE)) {
                 thisDB.createObjectStore(URLS_OBJECT_STORE,
                     {
-                        'keyPath': 'url'
+                        'keyPath': '_url'
                     });
             }
         };
         openRequest.onsuccess = (event) => {
             this._database = event.target.result;
         };
-        openRequest.onerror = (event) => {
+        openRequest.onerror = (event, error) => {
             console.dir(e);
         };
     }
@@ -50,8 +50,9 @@ function UrlService($http) {
                 var items = [];
                 var transaction = this._database.transaction([URLS_OBJECT_STORE], READ_ONLY);
                 var objectStore = transaction.objectStore(URLS_OBJECT_STORE);
-                var ob = objectStore.get(query);
+                var ob = objectStore.openCursor();
                 ob.onsuccess = function (event) {
+                    var cursor = event.target.result;
                     if (cursor) {
                         items.push(cursor.value);
 
@@ -75,40 +76,40 @@ function UrlService($http) {
         },
         'add': {
             'value': (url, callback) => {
-                var request = db.transaction([URLS_OBJECT_STORE], READ_WRITE)
+                var request = this._database.transaction([URLS_OBJECT_STORE], READ_WRITE)
                     .objectStore(URLS_OBJECT_STORE)
                     .add(url);
                 request.onsuccess = (event) => {
                     callback(null, url);
                 };
-                request.onerror = (event) => {
-                    callback(event.error, null);
+                request.onerror = (event, error) => {
+                    callback(event, null);
                 };
             }
         },
         'update': {
             'value': (url, callback) => {
-                var request = db.transaction([URLS_OBJECT_STORE], READ_WRITE)
+                var request = this._database.transaction([URLS_OBJECT_STORE], READ_WRITE)
                     .objectStore(URLS_OBJECT_STORE)
                     .update(url);
                 request.onsuccess = (event) => {
                     callback(null, url);
                 };
-                request.onerror = (event) => {
-                    callback(event.error, null);
+                request.onerror = (event, error) => {
+                    callback(event, null);
                 };
             }
         },
         'remove': {
             'value': (url, callback) => {
-                var request = db.transaction([URLS_OBJECT_STORE], READ_WRITE)
+                var request = this._database.transaction([URLS_OBJECT_STORE], READ_WRITE)
                     .objectStore(URLS_OBJECT_STORE)
                     .remove(url);
                 request.onsuccess = (event) => {
                     callback(null, url);
                 };
-                request.onerror = (event) => {
-                    callback(event.error, null);
+                request.onerror = (event, error) => {
+                    callback(event, null);
                 };
             }
         }
