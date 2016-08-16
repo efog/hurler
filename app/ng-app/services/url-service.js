@@ -104,7 +104,7 @@ function UrlService($http) {
             'value': (url, callback) => {
                 var request = this._database.transaction([URLS_OBJECT_STORE], READ_WRITE)
                     .objectStore(URLS_OBJECT_STORE)
-                    .remove(url);
+                    .delete(url);
                 request.onsuccess = (event) => {
                     callback(null, url);
                 };

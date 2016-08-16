@@ -1,24 +1,16 @@
-<div class="row">
-    <div class="col s9">
-        <md-tooltip md-delay="50" md-direction="bottom">
-            {{ vm.url }}
-        </md-tooltip>
-        <span class="ellipsis large">
-            {{ vm.url }}
-        </span>
+<md-list-item ng-click="vm.navigateTo(vm.url)" class="noright">
+    <div class="token" ng-class="{ grey: !vm.category, blue: vm.category === 'blue', red: vm.category === 'red', green: vm.category === 'green', black: vm.category === 'black' }">
     </div>
-    <div class="col s1">
-        <md-button ng-click="vm.copyToClipboard()" href="#" aria-label="Copy" class="md-icon-button">
-            <md-icon><i class="material-icons sidebar-icon">content_paste</i></md-icon>
-        </md-button>
-    </div>
-    <div class="col s1">      
-        <md-button href="{{ vm.url }}"
-                 title="Launch URL in new window"
-                 target="_blank"
-                 aria-label="{{ vm.url }}"
-                 class="md-icon-button launch" >
-                 <md-icon><i class="material-icons sidebar-icon">launch</i></md-icon>
-      </md-button>
-    </div>
-</div>
+    <p class="ellipsis">{{ vm.url }}
+        <md-tooltip md-delay="50" md-direction="bottom">{{ vm.url }}</md-tooltip>
+    </p>
+    <md-button ng-click="vm.copyToClipboard()" href="#" aria-label="Copy" class="md-icon-button">
+        <md-icon><i class="material-icons sidebar-icon">content_paste</i></md-icon>
+    </md-button>
+    <md-button href="{{ vm.url }}" title="Launch URL in new window" target="_blank" aria-label="{{ vm.url }}" class="md-icon-button launch">
+        <md-icon><i class="material-icons sidebar-icon">launch</i></md-icon>
+    </md-button>
+    <md-button title="Delete url" aria-label="{{ vm.url }}" ng-click="vm.delete()" class="md-icon-button delete">
+        <md-icon><i class="material-icons sidebar-icon">delete</i></md-icon>
+    </md-button>
+</md-list-item>

@@ -1,22 +1,33 @@
 <div id="url-bar">
     <div class="section">
-        <form name="addUrlForm" ng-submit="vm.add()">
-            <div class="col s2">
-                <button type="submit" ng-disabled="!addUrlForm.$valid" name="submitButton" class="btn-floating btn-medium waves-effect waves-light red z-depth-3"><i class="material-icons">add</i></button>
-            </div>
-            <div class="col s10">
-                <input type="text" ng-required="true" name="urlValue" ng-pattern="/^(?:(?:https?)://)/i" class="z-depth-3" ng-model="vm.currentNew.url"
-                    placeholder="Begin your journey with a new Url...">
-            </div>
-        </form>
-    </div>
-    <div class="section">
-        
-    </div>
-    <div class="section">
-        <div class="row" ng-repeat="url in vm.urls">
-            <url-bar-item urlitem="url"></url-bar-item>
-            <md-divider md-inset ng-if="!$last"></md-divider>
+        <div class="row">
+            <form name="addUrlForm" ng-submit="vm.add()">
+                <div class="col s2">
+                    <button type="submit" ng-disabled="!addUrlForm.$valid" name="submitButton" class="btn-floating btn-medium waves-effect waves-light red z-depth-3"><i class="material-icons">add</i></button>
+                </div>
+                <div class="col s10">
+                    <input type="text" ng-required="true" name="urlValue" ng-change="vm.filter()" class="z-depth-3" ng-model="vm.currentNew.url"
+                        ng-model-options="{ getterSetter: true, debounce: 100 }" placeholder="Begin your journey with a Url...">
+                </div>
+            </form>
         </div>
+        <div class="row">
+            <div class="col s2">
+                <button ng-click="vm.category = vm.category === 'blue' ? undefined : 'blue'" class="btn-floating btn-medium waves-effect waves-light red z-depth-1 blue"><i ng-show="vm.category === 'blue'" class="material-icons">check</i></button>
+            </div>
+            <div class="col s2">
+                <button ng-click="vm.category = vm.category === 'red' ? undefined : 'red'" class="btn-floating btn-medium waves-effect waves-light red z-depth-1 red"><i ng-show="vm.category === 'red'" class="material-icons">check</i></button>
+            </div>
+            <div class="col s2">
+                <button ng-click="vm.category = vm.category === 'green' ? undefined : 'green'" class="btn-floating btn-medium waves-effect waves-light red z-depth-1 green"><i ng-show="vm.category === 'green'" class="material-icons">check</i></button>
+            </div>
+            <div class="col s2">
+                <button ng-click="vm.category = vm.category === 'black' ? undefined : 'black'" class="btn-floating btn-medium waves-effect waves-light red z-depth-1 black"><i ng-show="vm.category === 'black'" class="material-icons">check</i></button>
+            </div>
+        </div>
+        <md-list flex>
+            <url-bar-item ng-repeat="url in vm.urls" class="" ondelete="vm.delete(url)" onnavigate="vm.navigate(url)" ng-show="!url.hide" urlitem="url"></url-bar-item>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list>
     </div>
 </div>

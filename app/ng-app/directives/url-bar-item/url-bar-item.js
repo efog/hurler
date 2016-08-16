@@ -8,6 +8,11 @@
 function UrlBarItemController($mdToast, $scope) {
     this._hover = true;
     Object.defineProperties(this, {
+        'category': {
+            'get': () => {
+                return this.urlitem.category;
+            }
+        },
         'url': {
             'get': () => {
                 return this.urlitem.url;
@@ -22,6 +27,24 @@ function UrlBarItemController($mdToast, $scope) {
             },
             'set': (value) => {
                 this._hover = value;
+            }
+        },
+        'delete': {
+            'value': () => {
+                if (this.ondelete) {
+                    this.ondelete({
+                        'url': this.url
+                    });
+                }
+            }
+        },
+        'navigateTo': {
+            'value': () => {
+                if (this.onnavigate) {
+                    this.onnavigate({
+                        'url': this.url
+                    });
+                }
             }
         },
         'copyToClipboard': {
@@ -77,7 +100,9 @@ function urlBarItem($http) {
         'link': link,
         'restrict': 'E',
         'scope': {
-            'urlitem': '=?'
+            'urlitem': '=?',
+            'ondelete': '&',
+            'onnavigate': '&'
         },
         'templateUrl': 'ng-app/directives/url-bar-item/url-bar-item.html'
     };

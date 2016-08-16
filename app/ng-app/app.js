@@ -27,7 +27,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {
         'url': '/home',
         'templateUrl': 'ng-app/views/partials/home.html'
-    }).state('about', {
+    })
+    .state('edit', {
+        'edit': '/edit/:url',
+        'templateUrl': 'ng-app/views/partials/edit.html'
+    })
+    .state('about', {
     });
 
 });
