@@ -1,5 +1,17 @@
 <div ng-controller="EditController as vm">
-    <div class="col s12 m12 l12 grey">
-        {{ vm.url }}
+    <div class="col s12 m12 l12">
+        <div class="row noright">
+            <div class="fixed-action-btn horizontal" ng-click="vm.goHome()" style="position: relative; display: inline-block;">
+                <a class="btn-floating btn-large red">
+                    <i class="large material-icons">home</i>
+                </a>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <h4 class="ellipsis" style="max-width: 50vw;">{{ vm.url }}
+                    <md-tooltip md-delay="50" md-direction="bottom">{{ vm.url }}</md-tooltip>
+                </h4>
+            </div>
+            <md-divider md-inset ng-class="vm.target.category"></md-divider>
+        </div>
     </div>
 </div>

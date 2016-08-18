@@ -1,3 +1,37 @@
+var Url = function () {
+    this._url = '';
+    this._hide = false;
+    this._category = 'grey';
+    Object.defineProperties(this, {
+        'url': {
+            'get': () => {
+                return this._url;
+            },
+            'set': (value) => {
+                this._url = value;
+            }
+        },
+        'hide': {
+            'get': () => {
+                return this._hide;
+            },
+            'set': (value) => {
+                this._hide = value;
+            }
+        },
+        'category': {
+            'get': () => {
+                return this._category;
+            },
+            'set': (value) => {
+                this._category = value;
+            }
+        }
+    });
+
+    return this;
+};
+
 /**
  * Creates the service
  * @constructor
@@ -71,6 +105,9 @@ function UrlService($http) {
                 ob.onsuccess = (event) => {
                     var result = event.target.result;
                     callback(null, result);
+                };
+                ob.onerror = (error) => {
+                    callback(error, null);
                 };
             }
         },

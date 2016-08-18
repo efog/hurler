@@ -1,37 +1,3 @@
-var Url = function () {
-    this._url = '';
-    this._hide = false;
-    this._category = 'grey';
-    Object.defineProperties(this, {
-        'url': {
-            'get': () => {
-                return this._url;
-            },
-            'set': (value) => {
-                this._url = value;
-            }
-        },
-        'hide': {
-            'get': () => {
-                return this._hide;
-            },
-            'set': (value) => {
-                this._hide = value;
-            }
-        },
-        'category': {
-            'get': () => {
-                return this._category;
-            },
-            'set': (value) => {
-                this._category = value;
-            }
-        }
-    });
-
-    return this;
-};
-
 /**
  * Controller Constructor
  * @constructor
@@ -77,7 +43,7 @@ function UrlBarController($mdToast, $rootScope, $state, UrlService) {
 
     this.navigate = (url) => {
         console.log('ohnoes %s', url);
-        $state.transitionTo(`edit`, {
+        $state.go(`edit`, {
             'url': encodeURIComponent(url)
         });
     };
@@ -112,6 +78,9 @@ function UrlBarController($mdToast, $rootScope, $state, UrlService) {
                         if (err === null) {
                             this._urls.push(this._newUrl);
                             console.log('added %s', this._newUrl.url);
+                            $state.go('edit', {
+                                'url': this._newUrl.url
+                            });
                             this._newUrl = new Url();
                             this.filter();
                             $rootScope.$apply();
