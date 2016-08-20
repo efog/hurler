@@ -9,6 +9,7 @@
  */
 function EditController($mdToast, $state, $stateParams, $window, UrlService) {
 
+    this.tabs = [];
     this._target = new Url();
     this._target.url = decodeURIComponent($stateParams.url);
     var getUrlCallback = (err, result) => {

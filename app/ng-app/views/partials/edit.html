@@ -1,17 +1,30 @@
 <div ng-controller="EditController as vm">
-    <div class="col s12 m12 l12">
-        <div class="row noright">
-            <div class="fixed-action-btn horizontal" ng-click="vm.goHome()" style="position: relative; display: inline-block;">
-                <a class="btn-floating btn-large red">
-                    <i class="large material-icons">home</i>
-                </a>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="row noright">
+                <div class="fixed-action-btn horizontal" ng-click="vm.goHome()" style="position: relative; display: inline-block;">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">home</i>
+                    </a>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <h4 class="ellipsis" style="max-width: 50vw;">{{ vm.url }}
+                        <md-tooltip md-delay="50" md-direction="bottom">{{ vm.url }}</md-tooltip>
+                    </h4>
+                </div>
+                <md-divider md-inset ng-class="vm.target.category"></md-divider>
             </div>
-            <div style="position: relative; display: inline-block;">
-                <h4 class="ellipsis" style="max-width: 50vw;">{{ vm.url }}
-                    <md-tooltip md-delay="50" md-direction="bottom">{{ vm.url }}</md-tooltip>
-                </h4>
-            </div>
-            <md-divider md-inset ng-class="vm.target.category"></md-divider>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s1">
+            <button name="addTab" class="btn-floating btn-medium waves-effect waves-light red z-depth-3"><i class="material-icons">add</i></button>
+        </div>
+        <div class="col s11">
+            <md-content class="md-padding">
+                <md-tabs md-selected="vm.selectedIndex" md-autoselect md-dynamic-height md-border-bottom>
+                </md-tabs>
+            </md-content>
         </div>
     </div>
 </div>
